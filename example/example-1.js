@@ -4,7 +4,7 @@ const Miaotixing  = require('../src/index');
 const miaotixing = new Miaotixing({
     retries: 5,        // 默认重试次数
     timeout: 8000,      // 默认超时时间
-    miaoCode: '',
+    miaoCode: 't00Sun5',
     text: 'hello'
 });
 

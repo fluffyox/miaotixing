@@ -49,21 +49,43 @@ class Miaotixing {
 
         try {
             const response = await this.axiosInstance.get(url);
+
             if (response.status === 200) {
-                if (response.data && (response.data.includes('错误') || response.data.includes('失败'))) {
-                    throw new Error(response.data);
+                const responseData = response.data;
+
+                // 检查是否包含错误或失败信息
+                if (responseData.includes('错误') || responseData.includes('失败')) {
+                    // VIP 用户的缓冲池提醒
+                    if (responseData.includes('转到提醒缓冲池')) {
+                        return {
+                            success: true,
+                            message: '提醒已转入缓冲池，将在稍后发送。',
+                            data: responseData,
+                        };
+                    } else {
+                        throw new Error(responseData);
+                    }
                 }
-                return response.data;
+
+                // 成功处理
+                return {
+                    success: true,
+                    message: '通知发送成功',
+                    data: responseData,
+                };
+
             } else {
                 throw new Error(`Unexpected HTTP status code: ${response.status}`);
             }
         } catch (error) {
+            // 捕捉 Axios 请求中的错误
             if (error.response) {
                 throw new Error(`Failed with status ${error.response.status}: ${error.response.statusText}`);
             } else {
-                throw new Error(`${error.message}`);
+                throw new Error(`Error: ${error.message}`);
             }
         }
+
     }
 }
 

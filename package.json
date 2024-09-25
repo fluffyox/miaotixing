@@ -1,14 +1,17 @@
 {
   "name": "miaotixing",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "喵提醒NodeJs SDK",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fluffyox/miaotixing-sdk-for-node"
+    "url": "git+https://github.com/fluffyox/miaotixing-sdk-for-node.git"
+  },
+  "homepage": "https://github.com/fluffyox/miaotixing-sdk-for-node#readme",
+  "bugs": {
+    "url": "https://github.com/fluffyox/miaotixing-sdk-for-node/issues"
   },
   "keywords": [
-    "miaotixing",
     "notification",
     "trigger"
   ],
